@@ -21,7 +21,7 @@ btn.addEventListener("click",function(){
          if (myTweet.length>0){    
             tweetIt(myTweet);
          }else{
-            alert("you need something to tweet"+myTweet);
+            alert("you need something to tweet");
          }
          });  
     }
