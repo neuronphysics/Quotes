@@ -1,14 +1,34 @@
 var quoteContainer=document.getElementById("random-quote");
 var btn=document.getElementById("btn");
-
+document.getElementById("tweet").style.visibility="hidden";
+var myTweet="";
 btn.addEventListener("click",function(){
+    
+    document.getElementById("tweet").style.visibility="visible";
     if (document.contains(document.getElementById("quote-text"))) {
-            document.getElementById("quote-text").remove();
-            createQuote();
+         document.getElementById("quote-text").remove();
+         createQuote();            
+         tweet.addEventListener("click",function(){
+         if (myTweet.length>0){    
+            tweetIt(myTweet);
+         }else{
+            alert("you need something to tweet");
+         }
+         });           
     } else {
-           createQuote();
+         createQuote();
+         tweet.addEventListener("click",function(){
+         if (myTweet.length>0){    
+            tweetIt(myTweet);
+         }else{
+            alert("you need something to tweet"+myTweet);
+         }
+         });  
     }
+    myTweet="";
 });
+
+
 
 function createQuote(){
         var url="https://raw.githubusercontent.com/4skinSkywalker/Database-Quotes-JSON/master/quotes.json";
@@ -45,7 +65,10 @@ function createCORSRequest(method, url) {
   return xhr;
 }
 
-
+function tweetIt (someText) {
+       var tweetUrl = 'https://twitter.com/home?status=' + encodeURIComponent(someText);
+       window.open(tweetUrl,"_blank");
+}    
 
 function renderHTML(data){
     var LenJson=data.length;
@@ -54,5 +77,10 @@ function renderHTML(data){
     var QuoteString="<blockquote id='quote-text' class='quote'><p><span>"+data[Num].quoteText+"<cite id='quote-author'> "+data[Num].quoteAuthor+"</cite></span></p></blockquote>"
     
     quoteContainer.insertAdjacentHTML('beforeend',QuoteString);
-    
+    myTweet+=data[Num].quoteText;
+    if (data[Num].quoteAuthor.length>0)
+    {
+        myTweet+=" ( "+data[Num].quoteAuthor+ " ) ";
+    }
 }
+

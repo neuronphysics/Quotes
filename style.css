@@ -147,3 +147,22 @@ blockquote a:hover{
 blockquote em{
   font-style: italic;
 }
+
+.fa {
+  padding: 1px;
+  font-size: 15px;
+  width:auto;
+  text-align: center;
+  text-decoration: none;
+  margin: 3px;
+}
+
+.fa:hover {
+    opacity: 0.8;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
